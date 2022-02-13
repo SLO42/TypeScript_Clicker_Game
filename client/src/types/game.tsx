@@ -11,7 +11,6 @@ export interface NameChangeEvent {
 export interface GameProps {
     user?: UserData;
     modifiers?: Modifiers;
-
 }
 
 export interface Modifiers {
@@ -21,20 +20,33 @@ export interface Modifiers {
 
 export interface CPSModifier {
         name: string;
-        price: Number;
-        total: Number;
+        type: ModifierType;
+        price: number;
+        total: number;
+        effect: EffectTypes;
+        strength: number;
 }
 
 export interface Stats {
-    clicks: Number;
-    totalClicks: Number;
+    clicks: number;
+    totalClicks: number;
 }
 
 export interface InitialState {
     user: UserData;
     stats: Stats;
     stage: Stage;
+    loading: Boolean;
+    paused: Boolean;
+    time: number;
+    modifiers: CPSModifiers;
 }
+
+export type IntervalArray = Array<NodeJS.Timer>
+
+export type EffectTypes = "FLAT" | "MULTI" | "TIME";
+
+export type ModifierType = "clicks" | "cps"; 
 
 export type Stage = 0 | 1 | 2 | 3;
 
