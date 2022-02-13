@@ -1,16 +1,7 @@
 import React from 'react';
-import { UserData } from '../types/user.data';
+import { GameProps, NameChangeEvent, InitialState, Stage } from '../types/game';
+import { UserData } from '../types/userData';
 
-interface Stats {
-    clicks: Number;
-    totalClicks: Number;
-}
-
-interface InitialState {
-    user: UserData;
-    stats: Stats;
-    stage: Number;
-}
 
 const INITIAL_STATE: InitialState = {
     user: {name: ""},
@@ -20,19 +11,6 @@ const INITIAL_STATE: InitialState = {
     },
     stage: 0
 }
-
-interface NameEventTarget extends EventTarget {
-    value: string;
-}
-
-interface NameChangeEvent {
-    target: NameEventTarget
-}
-
-interface GameProps {
-    user?: UserData;
-}
-
 export default class Game extends React.Component<GameProps, InitialState> {
     constructor(userData?: GameProps){
         super(userData!);
@@ -49,28 +27,60 @@ export default class Game extends React.Component<GameProps, InitialState> {
         this.setState({ user: newUser });
     }
 
-    incrementStage = (stage: Number) => {
+    incrementStage = (stage: Stage) => {
         this.setState({stage})
     }
 
-    render(): React.ReactNode {
+    0 = () => {
         const user: UserData = this.state.user;
-        const stage = this.state.stage;
         const disabled = user.name.length > 2 ? false : true;
-        return(
-            <div>
-                {stage === 0 ? 
-                <div>
-                    <input type="text" name="user" onChange={(e) => this.onNameChange(e)} />
-                    <button onClick={() => this.incrementStage(1)} disabled={disabled} >Enter Username</button>
-                </div>
-                :
-                <div>
-                    {user.name}
-                </div>
-            }
-            </div>
+
+        return (
+        <div>
+            <input type="text" name="user" onChange={(e) => this.onNameChange(e)} />
+            <button onClick={() => this.incrementStage(1)} disabled={disabled} >Enter Username</button>
+        </div>
+        );
+    }
+
+    1 = () => {
+        
+            //ideal we would create the 
+
+        return (
+            <>
+            {this.state.user.name} 1
+            </>
         )
     }
 
+    2 = () => {
+        
+            //ideal we would create the mid
+
+        return (
+            <>
+            {this.state.user.name} 2
+            </>
+        )
+    }
+
+    3 = () => {
+        
+            //ideal we would create the end
+
+        return (
+            <>
+            {this.state.user.name} 3
+            </>
+        )
+    }
+
+    render(): React.ReactNode {
+        const {stage} = this.state;
+        const CurrentStage = this[stage];
+        return(
+                <CurrentStage />
+        )
+    }
 }
