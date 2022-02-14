@@ -30,6 +30,8 @@ export interface CPSModifier {
 export interface Stats {
     clicks: number;
     totalClicks: number;
+    level: number;
+    totalClicksRequired: number;
 }
 
 export interface InitialState {
