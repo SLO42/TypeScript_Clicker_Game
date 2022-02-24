@@ -100,12 +100,12 @@ export default class Game extends React.Component<GameProps, InitialState> {
     }
 
     Level = () => {
-        const {totalClicks} = this.state.stats;
+        // const {totalClicks} = this.state.stats;
         
-        const calculateLevel = (totalClicks) => {
+        // const calculateLevel = (totalClicks) => {
 
-        }
-
+        // }
+        
 
     }
 
@@ -130,7 +130,7 @@ export default class Game extends React.Component<GameProps, InitialState> {
         const clicks = stats.clicks + 1;
         const totalClicks = stats.totalClicks + 1;
         const newStats = {clicks, totalClicks};
-        this.setState({stats: newStats})
+        // this.setState({stats: newStats})
     }
 
     onButtonClick = () => {
